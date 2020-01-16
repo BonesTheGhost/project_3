@@ -5,6 +5,10 @@ const formReducer = (state, action) => {
         case 'INPUT_CHANGE':
             let formIsValid = true;
             for (const inputId in state.inputs) {
+                //This is a falsey statement to catch name being 'undefined' per our switchModeHandler in UserAuth that will skip the undefined in the instance where it will crash the page.
+                if (!state.inputs[inputId]) {
+                    continue;
+                }
                 if (inputId === action.inputId) {
                     formIsValid = formIsValid && action.isValid;
                 } else {
