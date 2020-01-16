@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import './UserAuth.css';
 import Card from '../../shared/components/UIElements/Card';
@@ -6,8 +6,10 @@ import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import { useForm } from '../../shared/hooks/form-hook';
 import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/util/validators';
+import { AuthContext } from '../../shared/context/auth-context';
 
 const UserAuth = props => {
+    const auth = useContext(AuthContext);
     //we create the initial state. We are either in 'login' mode or not, so:: isLoginMode=true/false, and then a variable for changing that mode on the fly.
     const [isLoginMode, setIsLoginMode] = useState(true);
     const [formState, inputHandler, setFormData] = useForm({
@@ -55,6 +57,7 @@ const UserAuth = props => {
 const authSubmitHandler = event => {
     event.preventDefault();
     console.log(formState.inputs);
+    auth.login();
 };
 
 return <Card className="authentication">
