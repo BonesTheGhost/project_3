@@ -7,10 +7,10 @@ const Users = () => {
     const USERS = [
         {
             id: 'u1', 
-            name: 'Max', 
+            name: 'Max Schwarz', 
             image: 
             'https://homepages.cae.wisc.edu/~ece533/images/airplane.png', 
-            places: '3'
+            places: 3
         }
     ];
 
