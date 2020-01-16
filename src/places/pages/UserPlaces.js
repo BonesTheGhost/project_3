@@ -7,7 +7,7 @@ const DUMMY_PLACES = [
     {
         id: 'p1',
         title: 'Empire State Building',
-        description: 'One of the talles buildings in the world',
+        description: 'One of the tallest buildings in the world',
         imageURL: 'https://en.wikipedia.org/wiki/Empire_State_Building#/media/File:Empire_State_Building_(aerial_view).jpg',
         address: '20 W 34th St, New York, NY 10001',
         location: {
@@ -19,7 +19,7 @@ const DUMMY_PLACES = [
     {
         id: 'p2',
         title: 'Empire State Building',
-        description: 'One of the talles buildings in the world',
+        description: 'One of the tallest buildings in the world',
         imageURL: 'https://en.wikipedia.org/wiki/Empire_State_Building#/media/File:Empire_State_Building_(aerial_view).jpg',
         address: '20 W 34th St, New York, NY 10001',
         location: {
@@ -35,8 +35,5 @@ const UserPlaces = () => {
     const loadedPlaces = DUMMY_PLACES.filter(place => place.creator === userId);
     return <PlaceList items={loadedPlaces} />
 };
-
-
-
 
 export default UserPlaces;
