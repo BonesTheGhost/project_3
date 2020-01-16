@@ -25,9 +25,9 @@ const inputReducer = (state, action) => {
 //useReducer takes a second optional argument that is initial state we can setup. So we set it to an empty string and isValid is false. It returns an array with two elements, so we use array destructuring to store the elements as new constants.
 const Input = props => {
     const [inputState, dispatch] = useReducer(inputReducer, {
-        value: props.value || '',
+        value: props.initialValue || '',
         isTouched: false,
-        isValid: props.valid || false
+        isValid: props.initialValid || false
     });
 
     const { id, onInput} = props;
