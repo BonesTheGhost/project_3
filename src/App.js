@@ -5,12 +5,14 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import Users from './user/pages/Users';
 import NewPlace from './places/pages/NewPlace';
 import UserPlaces from './places/pages/UserPlaces';
+import UpdatePlace from './places/pages/UpdatePlace';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 
 
 //<Route> is a JSX component that we can use when importing 'react-router-dom'. It allows for a 'path' argument, and then whatever needs to be displayed is between the opening and closing tags.
 const App = () => {
   //We wrap 'Router' around everything that should be able to use our router. Ex: pages.
+  //ORDER MATTERS FOR UPDATE PLACE, since the router checks for the place/new route first!!
   return <Router>
     <MainNavigation />
     <main>
@@ -25,6 +27,10 @@ const App = () => {
 
         <Route path="/places/new" exact={true}>
           <NewPlace />
+        </Route>
+
+        <Route path="/places/:placeId" exact={true}>
+          <UpdatePlace />
         </Route>
 
         <Redirect to='/' />
