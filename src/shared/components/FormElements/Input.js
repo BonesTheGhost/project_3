@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 //useReducer allows you to use state in a component, and allows you to make a function call to update the component. Alternatively to 'useState()' this allows us to use logic etc. so better for components with joined state.
 import { validate } from '../../util/validators';
 import './Input.css';
@@ -29,6 +29,13 @@ const Input = props => {
         isTouched: false,
         isValid: false
     });
+
+    const { id, onInput} = props;
+    const { value, isValid } = inputState;
+
+    useEffect(() => {
+        onInput(id, value, isValid)
+    }, [id, value, isValid, onInput]);
 
     const changedHandler = event => {
         dispatch({ type: 'CHANGE', val: event.target.value, validators: props.validators });

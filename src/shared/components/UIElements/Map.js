@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-
+//useEffect allows us to run logic after the render() method is called. It is necessary to handle loading the map since the map won't be drawn upon the initial render (we're waiting for the necessary data to pass to it anyways... Async?)
 import './Map.css';
 //import MainHeader from '../Navigation/MainHeader';
 
