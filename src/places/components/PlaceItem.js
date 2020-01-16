@@ -4,7 +4,7 @@ import Card from '../../shared/components/UIElements/Card';
 import Button from '../../shared/components/FormElements/Button';
 import Modal from '../../shared/components/UIElements/Modal';
 import Map from '../../shared/components/UIElements/Map';
-import { AuthCOntext, AuthContext } from '../../shared/context/auth-context';
+import { AuthContext } from '../../shared/context/auth-context';
 
 import './PlaceItem.css';
 
@@ -21,10 +21,12 @@ const PlaceItem = props => {
 
     const showDeleteWarningHandler = () => {
         setShowConfirmModal(true);
+        console.log("CLICKED DELETE BUTTON!")
     };
 
     const cancelDeleteWarningHandler = () => {
         setShowConfirmModal(false);
+        console.log("CANCELED")
     };
 
     const confirmDeleteWarningHandler = () => {
@@ -48,7 +50,7 @@ const PlaceItem = props => {
             </Modal>
             <Modal show={showConfirmModal} onCancel={cancelDeleteWarningHandler} header="Are you sure?" footerClass="place-item__modal-actions" footer={
                 <React.Fragment>
-                    <Button inverse onCLick={cancelDeleteWarningHandler}>CANCEL</Button>
+                    <Button inverse onClick={cancelDeleteWarningHandler}>CANCEL</Button>
                     <Button danger onClick={confirmDeleteWarningHandler}>DELETE</Button>
                 </React.Fragment>
             }>
