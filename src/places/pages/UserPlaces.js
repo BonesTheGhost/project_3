@@ -3,12 +3,14 @@ import { useParams } from 'react-router-dom';
 
 import PlaceList from '../components/PlaceList';
 
+
 const DUMMY_PLACES = [
+    
     {
         id: 'p1',
         title: 'Empire State Building',
-        description: 'One of the tallest buildings in the world',
-        imageURL: 'https://en.wikipedia.org/wiki/Empire_State_Building#/media/File:Empire_State_Building_(aerial_view).jpg',
+        description: 'One of the tallest buildings in the West',
+        imageURL: '',
         address: '20 W 34th St, New York, NY 10001',
         location: {
             lat: 40.7484405,
@@ -18,16 +20,17 @@ const DUMMY_PLACES = [
     },
     {
         id: 'p2',
-        title: 'Empire State Building',
-        description: 'One of the tallest buildings in the world',
-        imageURL: 'https://en.wikipedia.org/wiki/Empire_State_Building#/media/File:Empire_State_Building_(aerial_view).jpg',
-        address: '20 W 34th St, New York, NY 10001',
+        title: 'Shanghai Tower',
+        description: 'One of the tallest buildings in the East',
+        imageURL: '',
+        address: '1 Century Ave, Lu Jia Zui, Pudong, Shanghai, China',
         location: {
-            lat: 40.7484405,
-            lng: -73.9878584
+            lat: 31.2397,
+            lng: 121.4998
         },
         creator: 'u2'
     }
+    
 ];
 
 const UserPlaces = () => {

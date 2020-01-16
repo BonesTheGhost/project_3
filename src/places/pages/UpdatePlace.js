@@ -5,12 +5,13 @@ import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/util/validators';
 import { useForm } from '../../shared/hooks/form-hook';
+import Card from '../../shared/components/UIElements/Card';
 
 const DUMMY_PLACES = [
     {
         id: 'p1',
         title: 'Empire State Building',
-        description: 'One of the tallest buildings in the world',
+        description: 'One of the tallest buildings in the West',
         imageURL: '',
         address: '20 W 34th St, New York, NY 10001',
         location: {
@@ -21,13 +22,13 @@ const DUMMY_PLACES = [
     },
     {
         id: 'p2',
-        title: 'Empire State Building',
-        description: 'One of the tallest buildings in the world',
+        title: 'Shanghai Tower',
+        description: 'One of the tallest buildings in the East',
         imageURL: '',
-        address: '20 W 34th St, New York, NY 10001',
+        address: '1 Century Ave, Lu Jia Zui, Pudong, Shanghai, China',
         location: {
-            lat: 40.7484405,
-            lng: -73.9878584
+            lat: 31.2397,
+            lng: 121.4998
         },
         creator: 'u2'
     }
@@ -56,18 +57,22 @@ const UpdatePlace = () => {
     const identifiedPlace = DUMMY_PLACES.find(p => p.id === placeId);
 
     useEffect(() => {
-        setFormData(
-            {
-                title: {
-                    value: identifiedPlace.title,
-                    isValid: true
+        if (identifiedPlace) {
+            setFormData(
+                {
+                    title: {
+                        value: identifiedPlace.title,
+                        isValid: true
+                    },
+                    description: {
+                        value: identifiedPlace.description,
+                        isValid: true
+                    }
                 },
-                description: {
-                    value: identifiedPlace.description,
-                    isValid: true
-                }
-            }, true);
-            setIsLoading(false);
+                true
+            );
+        }
+        setIsLoading(false);
     }, [setFormData, identifiedPlace]);
 
 
@@ -79,7 +84,9 @@ const UpdatePlace = () => {
 
     if (!identifiedPlace) {
         return (<div className="center">
+            <Card>
             <h2>Could not find Place!</h2>
+            </Card>
         </div>
         );
     }
