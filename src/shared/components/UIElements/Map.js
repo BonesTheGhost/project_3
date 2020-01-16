@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 
 import './Map.css';
-import MainHeader from '../Navigation/MainHeader';
+//import MainHeader from '../Navigation/MainHeader';
 
 const Map = props => {
     const mapRef = useRef();
