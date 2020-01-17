@@ -17,21 +17,21 @@ const NavLinks = props => {
 
             {auth.isLoggedIn && (
                 <li>
-                    <NavLink to="/u1/places">MY PLACES</NavLink>
+                    <NavLink to="/u1/places">MY SCORES</NavLink>
                 </li>
             )}
 
-
+            
             {auth.isLoggedIn && (
                 <li>
-                    <NavLink to="/places/new">ADD PLACE</NavLink>
+                    <NavLink to="/places/new">ADD SCORE</NavLink>
                 </li>
             )}
 
 
             {!auth.isLoggedIn && (
                 <li>
-                    <NavLink to="/auth">AUTHENTICATE</NavLink>
+                    <NavLink to="/auth">LOGIN</NavLink>
                 </li>
             )}
             {auth.isLoggedIn && <li><button onClick={auth.logout}>LOGOUT</button></li>}
