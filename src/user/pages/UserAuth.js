@@ -47,62 +47,83 @@ const UserAuth = props => {
                     value: '',
                     isValid: false
                 }
-            }, 
-            false
+            },
+                false
             );
         }
-    setIsLoginMode(prevMode => !prevMode);
-};
+        setIsLoginMode(prevMode => !prevMode);
+    };
 
-const authSubmitHandler = event => {
-    event.preventDefault();
-    console.log(formState.inputs);
-    auth.login();
-};
+    const authSubmitHandler = async event => {
+        event.preventDefault();
 
-return <Card className="authentication">
-    <h2>Login Required</h2>
-    <hr />
-    <form onSubmit={authSubmitHandler}>
-        {!isLoginMode && (
+        if (isLoginMode) {
+        } else {
+            try {
+                const response = await fetch('http://localhost:5000/api/users/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: formState.inputs.name.value,
+                        email: formState.inputs.email.value,
+                        password: formState.inputs.password.value
+                    })
+                });
+                const responseData = await response.json();
+                console.log(responseData);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        auth.login();
+    };
+
+
+    return <Card className="authentication">
+        <h2>Login Required</h2>
+        <hr />
+        <form onSubmit={authSubmitHandler}>
+            {!isLoginMode && (
+                <Input
+                    element="input"
+                    id="name"
+                    type="text"
+                    label="Your Name"
+                    validators={[VALIDATOR_REQUIRE()]}
+                    errorText="Please enter a name"
+                    onInput={inputHandler}
+                />
+            )}
             <Input
                 element="input"
-                id="name"
-                type="text"
-                label="Your Name"
-                validators={[VALIDATOR_REQUIRE()]}
-                errorText="Please enter a name"
+                id="email"
+                type="email"
+                label="E-mail"
+                validators={[VALIDATOR_EMAIL()]}
+                errorText="Please enter a valid email address."
                 onInput={inputHandler}
             />
-        )}
-        <Input
-            element="input"
-            id="email"
-            type="email"
-            label="E-mail"
-            validators={[VALIDATOR_EMAIL()]}
-            errorText="Please enter a valid email address."
-            onInput={inputHandler}
-        />
-        <Input
-            element="input"
-            id="password"
-            type="password"
-            label="password"
-            validators={[VALIDATOR_MINLENGTH(8)]}
-            errorText="Please enter a valid password."
-            onInput={inputHandler}
-        />
+            <Input
+                element="input"
+                id="password"
+                type="password"
+                label="password"
+                validators={[VALIDATOR_MINLENGTH(8)]}
+                errorText="Please enter a valid password."
+                onInput={inputHandler}
+            />
 
-        <Button type="submit" disabled={!formState.isValid}>
-            {isLoginMode ? 'LOGIN' : 'SIGNUP'}
-        </Button>
+            <Button type="submit" disabled={!formState.isValid}>
+                {isLoginMode ? 'LOGIN' : 'SIGNUP'}
+            </Button>
 
-    </form>
+        </form>
 
-    <Button inverse onClick={switchModeHandler}>SWITCH TO {isLoginMode ? 'SIGNUP' : 'LOGIN'}</Button>
+        <Button inverse onClick={switchModeHandler}>SWITCH TO {isLoginMode ? 'SIGNUP' : 'LOGIN'}</Button>
 
-</Card>;
+    </Card>;
 };
 
 export default UserAuth;
